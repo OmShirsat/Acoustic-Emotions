@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Audio Diarization Results</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f9;
+        }
+
+        h1 {
+            text-align: center;
+            padding: 20px;
+            background-color: #4CAF50;
+            color: white;
+        }
+
+        .timeline {
+            position: relative;
+            margin: 20px auto;
+            padding: 10px;
+            width: 90%;
+            max-width: 800px;
+            background: white;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            height: 50px;
+            overflow: hidden;
+        }
+
+        .segment {
+            position: absolute;
+            height: 100%;
+            text-align: center;
+            line-height: 50px;
+            font-size: 12px;
+            color: white;
+            overflow: hidden;
+            white-space: nowrap;
+            border-radius: 4px;
+        }
+    </style>
+</head>
+<body>
+    <h1>Audio Diarization Results</h1>
+    <div class="timeline" id="audioTimeline"></div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const timeline = document.getElementById('audioTimeline');
+            const audioDuration = 20; // Assuming static duration of 20s for example
+            
+            // Fetch data from backend endpoint
+            fetch('/diarize', {
+                method: 'POST' // Correct HTTP method
+            })
+            .then(response => response.json())
+            .then(data => {
+                const segments = data.segments;
+                
+                // Render each segment on the timeline
+                Object.keys(segments).forEach(segmentKey => {
+                    const segment = segments[segmentKey];
+                    const emotion = segment.emotion;
+                    
+                    // Map emotions to colors
+                    const emotionColors = {
+                        'Angry': '#f44336',    // Red
+                        'Disgust': '#9e9e9e',  // Gray
+                        'Fearful': '#2196f3',  // Blue
+                        'Happy': '#4caf50',    // Green
+                        'Neutral': '#9e9e9e',  // Gray
+                        'Sad': '#2196f3',      // Blue
+                        'Surprised': '#ffeb3b' // Yellow
+                    };
+
+                    const color = emotionColors[emotion];
+
+                    const startPercentage = (segment.start_time / audioDuration) * 100;
+                    const widthPercentage = ((segment.end_time - segment.start_time) / audioDuration) * 100;
+
+                    const segmentDiv = document.createElement('div');
+                    segmentDiv.className = 'segment';
+                    segmentDiv.style.left = `${startPercentage}%`;
+                    segmentDiv.style.width = `${widthPercentage}%`;
+                    segmentDiv.style.backgroundColor = color;
+                    segmentDiv.textContent = `${segmentKey}: ${emotion}`;
+
+                    timeline.appendChild(segmentDiv);
+                });
+            })
+            .catch(error => {
+                console.error('Error fetching diarization data:', error);
+            });
+        });
+    </script>
+</body>
+</html>

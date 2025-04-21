@@ -1,0 +1,18 @@
+Metadata-Version: 2.1
+Name: AcousticEmotions
+Version: 0.1
+Summary: A Flask app for Emotion Detection from Audio
+Home-page: 
+Author: Om Shirsat
+Author-email: omshirsat77@gmail.com
+Classifier: Development Status :: 3 - Alpha
+Classifier: Intended Audience :: Developers
+Classifier: Topic :: Software Development :: Build Tools
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.8
+Classifier: Programming Language :: Python :: 3.9
+Requires-Dist: Flask
+Requires-Dist: librosa
+Requires-Dist: keras
+Requires-Dist: numpy

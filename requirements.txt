@@ -1,0 +1,6 @@
+Flask
+librosa
+keras==3.4.1
+numpy
+tensorflow==2.17.0
+-e .

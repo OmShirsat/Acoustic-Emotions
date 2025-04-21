@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Acoustic Emotions</title>
+    <!-- Link to the CSS file in the static folder -->
+    <link rel="stylesheet" href="static/styles.css">
+    <!-- Include FontAwesome -->
+    <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
+</head>
+<body>
+    <div id="welcome-page" class="container">
+        <h1>Welcome to Acoustic Emotions</h1>
+        <p>Detect emotions and analyze audio through diarization!</p>
+
+        <!-- Form for detecting emotions from an uploaded audio file -->
+        <form action="/upload" method="POST" enctype="multipart/form-data">
+            <h2>Upload Audio for Emotion Detection</h2>
+            <label for="audioFile">Select Audio File</label>
+            <input type="file" id="audioFile" name="audioFile" accept="audio/*">
+            <button type="submit">Detect Emotion</button>
+        </form>
+
+        <!-- Section for audio diarization -->
+        <form action="/diarize" method="POST" enctype="multipart/form-data">
+            <h2>Upload Audio for Diarization</h2>
+            <label for="diarizeFile">Select Audio File</label>
+            <input type="file" id="diarizeFile" name="diarizeFile" accept="audio/*">
+            <button type="submit">Perform Diarization</button>
+        </form>
+    </div>
+</body>
+</html>

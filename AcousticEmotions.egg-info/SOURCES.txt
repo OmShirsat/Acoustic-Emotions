@@ -1,0 +1,7 @@
+setup.py
+AcousticEmotions.egg-info/PKG-INFO
+AcousticEmotions.egg-info/SOURCES.txt
+AcousticEmotions.egg-info/dependency_links.txt
+AcousticEmotions.egg-info/entry_points.txt
+AcousticEmotions.egg-info/requires.txt
+AcousticEmotions.egg-info/top_level.txt

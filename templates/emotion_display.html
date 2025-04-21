@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Emotion Detection Result</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f9;
+            text-align: center;
+        }
+        .container {
+            max-width: 600px;
+            margin: 50px auto;
+            padding: 20px;
+            background: white;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+        h1 {
+            color: #333;
+        }
+        p {
+            font-size: 1.2em;
+            color: #666;
+        }
+        .emotion {
+            font-size: 2em;
+            font-weight: bold;
+            color: #4caf50;
+        }
+        .emoji {
+            font-size: 5em;
+        }
+        button {
+            padding: 10px 20px;
+            font-size: 1em;
+            color: white;
+            background-color: #4caf50;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #45a049;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Detected Emotion</h1>
+        <p>The detected emotion based on the audio file is:</p>
+        <div class="emotion">{{ emotion }}</div>
+        <div class="emoji">{{ emoji }}</div>
+        <button onclick="window.location.href='/'">Go Back</button>
+    </div>
+</body>
+</html>

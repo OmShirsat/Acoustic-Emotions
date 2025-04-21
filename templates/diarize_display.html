@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Audio Diarization Results</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f9;
+        }
+
+        h1 {
+            text-align: center;
+            padding: 20px;
+            background-color: #4CAF50;
+            color: white;
+        }
+
+        .timeline {
+            position: relative;
+            margin: 20px auto;
+            padding: 20px;
+            width: 90%;
+            max-width: 800px;
+            background: white;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .timeline .event {
+            display: flex;
+            margin-bottom: 20px;
+            align-items: center;
+        }
+
+        .timeline .event:last-child {
+            margin-bottom: 0;
+        }
+
+        .timeline .event .time {
+            flex: 0 0 120px;
+            font-weight: bold;
+            color: #333;
+        }
+
+        .timeline .event .details {
+            flex: 1;
+            padding: 10px;
+            border-radius: 5px;
+            background: #e8f5e9;
+            border-left: 5px solid #4CAF50;
+        }
+
+        .timeline .event .details span {
+            display: block;
+            margin-top: 5px;
+            font-size: 0.9em;
+            color: #555;
+        }
+
+        .emoji {
+            font-size: 1.5em;
+            margin-left: 10px;
+        }
+
+        .speaker {
+            font-weight: bold;
+            color: #3f51b5;
+        }
+    </style>
+</head>
+<body>
+    <h1>Audio Diarization Results</h1>
+    <div class="timeline">
+        {% for segment, data in segments.items() %}
+        <div class="event">
+            <div class="time">{{ data['start_time'] }} - {{ data['end_time'] }}</div>
+            <div class="details">
+                <span class="speaker">{{ segment }}</span>: {{ data['emotion'] }}
+                <span class="emoji">{{ data['emoji'] }}</span>
+                <span>Segment Path: {{ data['segment_path'] }}</span>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+</body>
+</html>

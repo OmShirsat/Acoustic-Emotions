@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Audio Timeline</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+        }
+        .timeline {
+            position: relative;
+            width: 100%;
+            height: 50px;
+            background-color: #f0f0f0;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            overflow: hidden;
+        }
+        .segment {
+            position: absolute;
+            height: 100%;
+            color: white;
+            text-align: center;
+            line-height: 50px;
+            font-size: 12px;
+        }
+        .emotion-happy {
+            background-color: #4caf50; /* Green */
+        }
+        .emotion-sad {
+            background-color: #2196f3; /* Blue */
+        }
+        .emotion-angry {
+            background-color: #f44336; /* Red */
+        }
+        .emotion-neutral {
+            background-color: #9e9e9e; /* Gray */
+        }
+    </style>
+</head>
+<body>
+    <h1>Audio Timeline with Emotions</h1>
+    <div class="timeline" id="audioTimeline"></div>
+
+    <script>
+        // Example audio segments data
+        const audioSegments = [
+            { start: 0, end: 5, emotion: 'happy' },
+            { start: 5, end: 10, emotion: 'sad' },
+            { start: 10, end: 15, emotion: 'angry' },
+            { start: 15, end: 20, emotion: 'neutral' },
+        ];
+
+        const timeline = document.getElementById('audioTimeline');
+        const audioDuration = 20; // Total duration of the audio in seconds
+
+        // Create segments on the timeline
+        audioSegments.forEach(segment => {
+            const segmentDiv = document.createElement('div');
+            const startPercentage = (segment.start / audioDuration) * 100;
+            const widthPercentage = ((segment.end - segment.start) / audioDuration) * 100;
+
+            segmentDiv.className = `segment emotion-${segment.emotion}`;
+            segmentDiv.style.left = `${startPercentage}%`;
+            segmentDiv.style.width = `${widthPercentage}%`;
+            segmentDiv.textContent = segment.emotion;
+
+            timeline.appendChild(segmentDiv);
+        });
+    </script>
+</body>
+</html>
